@@ -496,6 +496,39 @@ Here we have unique solution
 
 $$ a = 5, b = 5 $$
 
+Another way to arrive at the solution is to compute the inverse
+$P^{-1} of the coefficient matrix $P$ ; if we have that we can multiply
+both sides on the left by it and compute the result.
+
+In the above case,
+
+$$
+P^{-1} = \begin{bmatrix}
+-1 & 1 \\
+2 & -1 \\
+\end{bmatrix}
+$$
+
+Multiplying $P^{-1}$ by the right-hand-side;
+
+$$
+\begin{bmatrix}
+-1 & 1 \\
+2 & -1 \\
+\end{bmatrix} . \begin{bmatrix}
+10 \\
+15
+\end{bmatrix} = \begin{bmatrix}
+5 \\
+5
+\end{bmatrix} = \begin{bmatrix}
+a \\
+b
+\end{bmatrix}
+$$
+
+This is our solution from above.
+
 We can also have cases where there are infinitely many solutions;
 for example:
 

@@ -478,9 +478,7 @@ $$
 \end{bmatrix} . \begin{bmatrix}
 a \\
 b \\
-\end{bmatrix} \\
-= \\
-\begin{bmatrix}
+\end{bmatrix} = \begin{bmatrix}
 10 \\
 15 \\
 \end{bmatrix}

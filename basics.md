@@ -412,18 +412,13 @@ P.P^{-1} = I
 $$
 
 $$
-=> \\
-\begin{bmatrix}
+=> \begin{bmatrix}
 5 & 2 \\
 1 & 2
-\end{bmatrix} \\
-. \\
-\begin{bmatrix}
+\end{bmatrix} . \begin{bmatrix}
 a & b \\
 c & d 
-\end{bmatrix} \\
-= \\
-\begin{bmatrix}
+\end{bmatrix} = \begin{bmatrix}
 1 & 0 \\
 0 & 1
 \end{bmatrix}

@@ -344,6 +344,19 @@ left or right) gives us the identity matrix; i.e.
 
 $$A^{-1}A = AA^{-1} = I$$
 
+We can prove the left and right inverses are equivalent;
+starting with
+
+$$AA^{-1} = I$$
+
+We multiply both sides by A:
+
+$$AA^{-1}A = A$$
+
+$$=> A(A^{-1}A) = A$$
+
+This tells us the matrix product $$A^{-1}A$ must be $I$.
+
 So the inverse is the matrix equivalent to 1/n for scalar n -
 $(n)(1/n) = 1$.  With matrices, instead of 1 we have the
 identity matrix.

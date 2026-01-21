@@ -260,7 +260,7 @@ Example
 $$
 P = \begin{bmatrix}
 5 & 2 & 0 \\
-7 & 3 & 1
+7 & 3 & 1 \\
 \end{bmatrix}
 $$
 
@@ -268,7 +268,7 @@ $$
 Q = \begin{bmatrix}
 2 & 1 \\
 7 & 3 \\
-8 & 0 \\
+8 & 0
 \end{bmatrix}
 $$
 
@@ -284,7 +284,7 @@ P.Q = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-$P.Q_{1,1]$ (0,0 in python) is computed by taking dot product of
+$P.Q_{1,1}$ (0,0 in python) is computed by taking dot product of
 first row of P with first column of Q; i.e.
 
 $$
@@ -393,9 +393,11 @@ P = \begin{bmatrix}
 1 & 2
 \end{bmatrix}
 $$
+
 $$
 P.P^{-1} = I
 $$
+
 $$
 =>
 \begin{bmatrix}

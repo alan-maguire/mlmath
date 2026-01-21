@@ -399,23 +399,35 @@ P.P^{-1} = I
 $$
 
 $$
-=>
+=> \\
 \begin{bmatrix}
 5 & 2 \\
 1 & 2
-\end{bmatrix} . \begin{bmatrix}
+\end{bmatrix} \\
+. \\
+\begin{bmatrix}
 a & b \\
 c & d 
-\end{bmatrix} = \begin{bmatrix}
+\end{bmatrix} \\
+= \\
+\begin{bmatrix}
 1 & 0 \\
 0 & 1
-\end{bmatrix}\\
+\end{bmatrix}
+$$
+
+$$
 => 5a+2c = 1 ;\\
    1a+2c = 0 ;\\
    5b+2d = 0 ;\\
    1b+2d = 1 ;\\
-=> a = 0.25, c = -0.125, b = -0.25, d = 0.625
+$$
 
+$$
+=> a = 0.25, c = -0.125, b = -0.25, d = 0.625
+$$
+
+$$
 => D^{-1} = \begin{bmatrix}
 0.25 & -0.25 \\
 -0.125 & 0.625
@@ -442,16 +454,23 @@ defined).
 When considering matrices as representing as systems of equations,
 a non-singular system is one with a unique solution; e.g.
 
-$$a + b = 10\\
+$$
+a + b = 10\\
 2a + b = 15\\
-\\
+$$
+
+$$
 => \begin{bmatrix}
 1 & 1 \\
 2 & 1 \\
-\end{bmatrix} . \begin{bmatrix}
+\end{bmatrix} \\
+. \\
+\begin{bmatrix}
 a \\
 b \\
-\end{bmatrix} = \begin{bmatrix}
+\end{bmatrix} \\
+= \\
+\begin{bmatrix}
 10 \\
 15 \\
 \end{bmatrix}

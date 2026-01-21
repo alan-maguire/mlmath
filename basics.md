@@ -115,7 +115,7 @@ The most commonly used is the $L^2$ norm; it matches the usual
 Pythagorean length:
 
 $$
-||x||_2 = \sqrt(\sum_i(|x_i|^2))
+||x||_2 = \sqrt{\sum_i(|x_i|^2)}
 $$
 
 ```

@@ -437,7 +437,7 @@ $$
 $$
 
 $$
-=> D^{-1} = \begin{bmatrix}
+=> P^{-1} = \begin{bmatrix}
 0.25 & -0.25 \\
 -0.125 & 0.625
 \end{bmatrix}
@@ -496,15 +496,21 @@ We can also have cases where there are infinitely many solutions;
 for example:
 
 $$
-a + b = 10\\
-2a + 2b = 20\\
+a + b = 10
+$$
+
+$$
+2a + 2b = 20
 $$
 
 and no solution (where the equations are inconsistent):
 
 $$
-a + b = 10\\
-2a + 2b = 30\\
+a + b = 10
+$$
+
+$$
+2a + 2b = 30
 $$
 
 Note that all that matters for singularity is the coefficient matrix;

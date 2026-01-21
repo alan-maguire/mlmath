@@ -417,10 +417,19 @@ c & d
 $$
 
 $$
-=> 5a+2c = 1 ;\\
-   1a+2c = 0 ;\\
-   5b+2d = 0 ;\\
-   1b+2d = 1 ;\\
+=> 5a+2c = 1
+$$
+
+$$
+   1a+2c = 0
+$$
+
+$$
+   5b+2d = 0
+$$
+
+$$
+   1b+2d = 1
 $$
 
 $$
@@ -455,8 +464,11 @@ When considering matrices as representing as systems of equations,
 a non-singular system is one with a unique solution; e.g.
 
 $$
-a + b = 10\\
-2a + b = 15\\
+a + b = 10
+$$
+
+$$
+2a + b = 15
 $$
 
 $$

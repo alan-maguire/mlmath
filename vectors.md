@@ -1,0 +1,196 @@
+# Vectors
+
+Vectors are represented as a 1-dimensional ordered array of numbers,
+usually in columnar form:
+
+$$
+x = \begin{bmatrix}
+1 \\
+2 \\
+3
+\end{bmatrix}
+$$
+
+Vectors are often conceptualized geometrically as a line in
+n-dimensional space, with each element being the length along
+the relevant axis.
+
+In python, we create a vectors using numpy
+
+```
+$ python3
+>>> import numpy as np
+>>> x = np.array([[1],[2],[3]])
+>>> x
+array([[1],
+       [2],
+       [3]])
+>>> 
+```
+
+We can index a vector element as
+$x_i$ : on python we start from index 0:
+
+```
+>>> x[0]
+array([1])
+```
+
+x is a column vector; to create row vector
+
+$$
+x = \begin{bmatrix}
+1 & 2 & 3
+\end{bmatrix}
+$$
+
+```
+>>> x2 = np.array([[1,2,3]])
+>>> x2
+array([[1, 2, 3]])
+
+```
+
+We can flip a matrix from columnar to row form (or vice
+versa) using the transpose operation:
+
+$$
+x^T = \begin{bmatrix}
+1 & 2 & 3
+\end{bmatrix}
+$$
+
+In python:
+
+```
+>>> z = x.T
+>>> z
+array([[1, 2, 3]])
+```
+
+We can get the size of a vector via `np.size()`; `np.shape()`
+can be used to get the dimensions (`np.size()`) simply returns
+the number of elements:
+
+```
+>>> np.shape(x)
+(3, 1)
+>>> np.size(x)
+3
+```
+
+Addition, subtraction and scalar multiplication all operate
+on each member; for example
+
+$$
+x = \begin{bmatrix}
+1 \\
+2 \\
+3
+\end{bmatrix}
+$$
+
+$$
+y = \begin{bmatrix}
+4 \\
+5 \\
+6
+\end{bmatrix}
+$$
+
+$$
+x + y = \begin{bmatrix}
+5 \\
+7 \\
+8
+\end{bmatrix}
+$$
+
+There are many different ways to represent the size (norm)
+of a vector; the $L^1$ norm is simply the sum of the elements.
+
+The most commonly used is the $L^2$ norm; it matches the usual
+Pythagorean length:
+
+$$
+||x||_2 = \sqrt{\sum_i(|x_i|^2)}
+$$
+
+```
+>>> np.linalg.norm(x)
+3.7416573867739413
+```
+
+This formula also generalizes beyond 2 to any norm p, using
+the p'th root and p'th power.  From this we see the $L^1$
+norm is simply the sum of the absolute value of the elements.
+
+We can multiply two vectors using the dot product operation;
+each corresponding element is multiplied and then summed.
+The convention is to multiply row by column, so we take the
+transpose of x if it is a column vector:
+
+$$
+x^T . y = (1)(4)+(2)(5)+(3)(6) = 32
+$$
+
+In python we can either use `np.dot()` or the equivalent
+`@` operator:
+
+```
+>>> x = np.array([[1],[2],[3]])
+>>> y = np.array([[4],[5],[6]])
+>>> x.T@y
+array([[32]])
+>>> np.dot(x.T,y)
+array([[32]])
+```
+
+Sometimes the dot product of x and y is written as $<x,y>$.
+
+Notice that the square of the $L^2$ norm is equivalent to
+$x^T.x$ .  The squared $L^2$ norm is often used in machine
+learning as it is easy to calcuate, but one problem with it
+is it is very small when the vector elements are close to 0
+since the square of a small number is a smaller number.  In
+such cases the $L^1$ norm can be used as a measure of vector
+size.
+
+The dot product can also be rewritten as a product
+of $L^2$ norms and the angle $\theta$ between the vectors:
+
+$$
+x^T.y = ||x||.||y||\cos(\theta)
+$$
+
+One consequence of this is that perpendicular vectors have
+a dot product of 0, while parallel ones have a dot product
+of $||x||.||y||$ (the product of their $L^2$ norms).  In fact,
+the dot product is equivalent to magnitude of projection of vector
+x onto vector y multiplied by the length of y.  We can see
+this using Pythagorus theorem; drop a perpendicular from
+x onto y; the adjacent to angle $\theta$ is the projection
+$||x||.\cos(\theta)$ .  All that is missing is to multiply
+by $||y||$ and we have the dot product formula.
+
+This also makes it much easier to compute projections;
+to compute the projection x onto y. If
+
+$$
+x^T.y = ||proj(x,y)||.||y||
+$$
+
+$$
+proj(x, y) = \frac{x^T.y}{||y||} y
+$$
+
+Note tha additional y vector since the value in front of it
+simply gives the length of the projection along y; we still
+need the y vector to have the magnitude and direction of the
+projection vector.
+
+This geometric interpretation also tells us when the projection
+of x onto y is positive, the dot product of $x^T.y$ will be
+positive, while if it is negative the dot product will be too.
+And of course if they are orthogonal the projection is zero.
+

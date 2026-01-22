@@ -318,14 +318,21 @@ $$
 
 
 This gives us Eq 1:
-$(ab)c_{x,z} = \sum_{j=1}^m (\sum_{i=1}^n a_{x,i}.b_{i,y}).c_{j,z}$
+$$
+(ab)c_{x,z} = \sum_{j=1}^m (\sum_{i=1}^n a_{x,i}.b_{i,y}).c_{j,z}
+$$
+
+Meanwhile:
 
 $$
 bc_{y,z} = \sum_{j=1}^m b_{y,j}.c_{j,z}
 $$
 
 And Eq 2:
-$a(bc)_{x,z} = \sum_{i=1}^n a_{x,i} (\sum_{j=1}^m b_{y,j}.c_{j,z})$
+
+$$
+a(bc)_{x,z} = \sum_{i=1}^n a_{x,i} (\sum_{j=1}^m b_{y,j}.c_{j,z})
+$$
 
 Rearranging, Eq 1 and 2 are equivalent; all that changes is the order
 of the multiplication.

@@ -606,7 +606,18 @@ $$
 \end{bmatrix}
 $$
 
-Row 2 is 4 X row 1.
+Row 2 is 4 X row 1.  With this matrix we can only reach points that
+are multiples of the vector
+
+$$
+\begin{bmatrix}
+1 \\
+4
+\end{bmatrix}
+$$
+
+i.e. the transformation transforms points in $R^2$ to points along
+the line represented by that vector.
 
 We can use this fact about linear dependence to construct a test for
 linear dependence, and hence singularity.

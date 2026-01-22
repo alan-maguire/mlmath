@@ -695,6 +695,27 @@ is singular.
 This is a quick test for linear dependence and hence singularity;
 it is called the determinant and generalizes to larger square matrices.
 
+For larger than 2x2 matrices there are a few techniques we can use.
+
+- For large matrices, we can use Gaussian elimination and once we
+  have an upper triangular matrix (where all entries below diagonal are
+  zero) we can simply get the product of the main diagonal entries
+  to compute the determinant.
+
+- We can use Laplace expansion; it breaks down the determinant of
+  an nXn matrix into the weighted sum of determinants of (n-1)x(n-1)
+  sub-matrices, so is recursive until we hit 2/3 and can compute the
+  determinants directly. The process is
+	- choose row/column i,j
+	- get the determinant of the (n-1)x(n-1) matrix
+	  formed by deleting row i, column j from the matrix; this is
+	  the $cofactor_{i,j}$
+	- compute the determinant via
+
+$$
+		det(A) = \sum_{j=1}^n (-1)^{i+j} . a_{i,j} . cofactor(A_{i,j})
+$$
+
 foo
 bar
 baz

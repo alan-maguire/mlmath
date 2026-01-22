@@ -574,11 +574,11 @@ where c is the constant vector.  If we have an inverse for P (non-singular),
 whatever c is we can simply multiply both sides by $P^{-1}$ :
 
 $$
-P^{-1}.P.x = P^-1.c
+P^{-1}.P.x = P{^-1}.c
 $$
 
 $$
-=> I.x = P^-1.c  => x = P^-1.c
+=> I.x = P^{-1}.c  => x = P{^-1}.c
 $$
 
 And with the above we can simply read off the x values from the vector

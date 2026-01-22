@@ -51,6 +51,8 @@ array([[1, 2, 3]])
 
 ```
 
+## Transpose
+
 We can flip a matrix from columnar to row form (or vice
 versa) using the transpose operation:
 
@@ -79,6 +81,8 @@ the number of elements:
 3
 ```
 
+## Vector operations
+
 Addition, subtraction and scalar multiplication all operate
 on each member; for example
 
@@ -106,6 +110,8 @@ x + y = \begin{bmatrix}
 \end{bmatrix}
 $$
 
+## Norm
+
 There are many different ways to represent the size (norm)
 of a vector; the $L^1$ norm is simply the sum of the elements.
 
@@ -124,6 +130,8 @@ $$
 This formula also generalizes beyond 2 to any norm p, using
 the p'th root and p'th power.  From this we see the $L^1$
 norm is simply the sum of the absolute value of the elements.
+
+## Dot product
 
 We can multiply two vectors using the dot product operation;
 each corresponding element is multiplied and then summed.
@@ -155,6 +163,8 @@ is it is very small when the vector elements are close to 0
 since the square of a small number is a smaller number.  In
 such cases the $L^1$ norm can be used as a measure of vector
 size.
+
+## Geometric dot product
 
 The dot product can also be rewritten as a product
 of $L^2$ norms and the angle $\theta$ between the vectors:

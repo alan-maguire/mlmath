@@ -40,6 +40,8 @@ instead of an index:
 array([2, 8])
 ```
 
+## Matrix operations
+
 Addition, subtraction and scalar multiplication work similarly
 to vectors.
 
@@ -101,7 +103,7 @@ $$
 
 where n is the number of columns of p == number of rows of q.
 
-Properties of matrix multiplication
+## Properties of matrix multiplication
 
 - associative: $A.(B.C) = (A.B).C$
 - distributive: $A(B + C) = A.B + A.C$
@@ -139,6 +141,8 @@ $$
 
 Rearranging, Eq 1 and 2 are equivalent; all that changes is the order
 of the multiplication.
+
+## Geometric interpretation
 
 Similarly to vectors, we can view matrices geometrically.  Specifically
 we can view them as comprising linear transformations of vectors.
@@ -186,6 +190,8 @@ $$A.(B.x) = (A.B)x$$
 
 multiplying A.B by x is equivalent to first applying the linear
 transformation B to x and then applying A to the result.
+
+## Matrix inverse
 
 Inverting a matrix - where $A^{-1}$ for square matrix A is
 defined as the matrix that when multiplied by A (on either the
@@ -309,6 +315,8 @@ array([[ 0.25 , -0.25 ],
        [-0.125,  0.625]])
 
 ```
+
+## Matrices as systems of equations
 
 Not all square matrices have inverses, just as not all numbers
 do (0 does not have a multiplicative inverse since 1/0 is not
@@ -459,6 +467,8 @@ $$
 
 i.e. the transformation transforms points in $R^2$ to points along
 the line represented by that vector.
+
+## Determinant
 
 We can use this fact about linear dependence to construct a test for
 linear dependence, and hence singularity.

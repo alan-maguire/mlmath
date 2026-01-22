@@ -2,5 +2,6 @@
 
 Linear algebra
 
-- [Basics](./basics.md)
+- [Vectors](./vectors.md)
+- [Matrices](./matrices.md)
 

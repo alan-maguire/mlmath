@@ -574,6 +574,7 @@ $$
 1 & 4 \\
 4 & 16
 \end{bmatrix}
+$$
 
 We can use this fact to construct a test for singularity.
 
@@ -585,6 +586,7 @@ a & b \\
 c & d
 \end{bmatrix}
 $$
+
 it is linearly dependent if
 
 $$
@@ -601,6 +603,11 @@ rearranging these
 
 $$
 k = c/a = d/b => ad = bc => ad - bc = 0
+$$
+
+So multiply the main diagonal elements of a 2x2 matrix and subtract
+the product of the off-diagonal elements; if this is 0 the matrix
+is singular.
 
 This is a quick test for linear dependence and hence singularity;
 it is called the determinant and generalizes to larger square matrices.

@@ -559,10 +559,51 @@ $$
 $$
 
 Note that all that matters for singularity is the coefficient matrix;
-the results determine whether we have no or infinite solutions, but
-in both cases the matrix is singular.
+if it is singular, the results determine whether we have zero or infinite
+solutions, but in both those cases the matrix is singular.
 
-There is a quick test for singularity; computing the determinant.
+A good question to ask is if the linear transformation spans $R^n$ -
+i.e. can all points in $R^n$ be reached after the linear transformation?
+
+If a linear transformation does not span $R^n$ it must be linearly
+dependent - one of the rows is attainable from a linear combination of
+the others; for example
+
+$$
+\begin{bmatrix}
+1 & 4 \\
+4 & 16
+\end{bmatrix}
+
+We can use this fact to construct a test for singularity.
+
+For a 2x2 matrix
+
+$$
+\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}
+$$
+it is linearly dependent if
+
+$$
+ka = c
+$$
+
+and
+
+$$
+kb = d
+$$
+
+rearranging these
+
+$$
+k = c/a = d/b => ad = bc => ad - bc = 0
+
+This is a quick test for linear dependence and hence singularity;
+it is called the determinant and generalizes to larger square matrices.
 
 foo
 bar

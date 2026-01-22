@@ -497,7 +497,7 @@ Here we have unique solution
 $$ a = 5, b = 5 $$
 
 Another way to arrive at the solution is to compute the inverse
-$P^{-1} of the coefficient matrix $P$ ; if we have that we can multiply
+$P^{-1}$ of the coefficient matrix $P$ ; if we have that we can multiply
 both sides on the left by it and compute the result.
 
 In the above case,

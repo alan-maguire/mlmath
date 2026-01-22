@@ -284,12 +284,20 @@ P.Q = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-$P.Q_{1,1}$ (0,0 in python) is computed by taking dot product of
+$P.Q_{1,1}$ ([0,0] in python) is computed by taking dot product of
 first row of P with first column of Q; i.e.
 
 $$
 (5)(2) + (2)(7) + (0)(8) = 24
 $$
+
+In general to compute the element $pq_{x,y}$ in the product $P.Q$
+
+$$
+pq_{x,y} = \sum_{i=1}^n p_{x,i}.q_{i,x}
+$$
+
+where n is the number of columns of p == number of rows of q.
 
 Similarly to vectors, we can view matrices geometrically.  Specifically
 we can view them as comprising linear transformations of vectors.

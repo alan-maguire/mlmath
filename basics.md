@@ -299,6 +299,37 @@ $$
 
 where n is the number of columns of p == number of rows of q.
 
+Properties of matrix multiplication
+
+- associative: $A.(B.C) = (A.B).C$
+- distributive: $A(B + C) = A.B + A.C$
+- non-commutative: $A.B \ne B.A$
+- multiplicative identity: $A.I = I.A = A$
+- multiplicative property of 0: $A.0 = 0$
+- scalar multiplication $c(A.B) = (cA)B = A(cB)$ for scalar c
+- transpose of a product ${(A.B)}^T = B^T.A^T$
+- if $A.B = 0$ it does not necessarily mean A=0 or B=0
+
+We can prove associativity via the definition of multiplication:
+
+$$
+ab_{x,y} = \sum_{i=1}^n a_{x,i}.b_{i,y}
+$$
+
+
+This gives us Eq 1:
+$(ab)c_{x,z} = \sum_{j=1}^m (\sum_{i=1}^n a_{x,i}.b_{i,y}).c_{j,z}$
+
+$$
+bc_{y,z} = \sum_{j=1}^m b_{y,j}.c_{j,z}
+$$
+
+And Eq 2:
+$a(bc)_{x,z} = \sum_{i=1}^n a_{x,i} (\sum_{j=1}^m b_{y,j}.c_{j,z})$
+
+Rearranging, Eq 1 and 2 are equivalent; all that changes is the order
+of the multiplication.
+
 Similarly to vectors, we can view matrices geometrically.  Specifically
 we can view them as comprising linear transformations of vectors.
 A linear transformation takes each vector in a space to another vector

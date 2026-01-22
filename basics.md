@@ -318,6 +318,7 @@ $$
 
 
 This gives us Eq 1:
+
 $$
 (ab)c_{x,z} = \sum_{j=1}^m (\sum_{i=1}^n a_{x,i}.b_{i,y}).c_{j,z}
 $$

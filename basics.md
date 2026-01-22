@@ -559,8 +559,30 @@ $$
 $$
 
 Note that all that matters for singularity is the coefficient matrix;
-if it is singular, the results determine whether we have zero or infinite
-solutions, but in both those cases the matrix is singular.
+if it is singular, the right-hand side constant vector determines whether
+we have zero or infinite solutions, but in both those cases the matrix
+is singular.
+
+If a matrix P has an inverse, there is always a solution since we start
+with
+
+$$
+P.x = c
+$$
+
+where c is the constant vector.  If we have an inverse for P (non-singular),
+whatever c is we can simply multiply both sides by $P^{-1}$ :
+
+$$
+P^{-1}.P.x = P^-1.c
+$$
+
+$$
+=> I.x = P^-1.c  => x = P^-1.c
+$$
+
+And with the above we can simply read off the x values from the vector
+multiplication of the inverse and c.
 
 A good question to ask is if the linear transformation spans $R^n$ -
 i.e. can all points in $R^n$ be reached after the linear transformation?
@@ -576,7 +598,10 @@ $$
 \end{bmatrix}
 $$
 
-We can use this fact to construct a test for singularity.
+Row 2 is 4 X row 1.
+
+We can use this fact about linear dependence to construct a test for
+linear dependence, and hence singularity.
 
 For a 2x2 matrix
 

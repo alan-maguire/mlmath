@@ -294,7 +294,7 @@ $$
 In general to compute the element $pq_{x,y}$ in the product $P.Q$
 
 $$
-pq_{x,y} = \sum_{i=1}^n p_{x,i}.q_{i,x}
+pq_{x,y} = \sum_{i=1}^n p_{x,i}.q_{i,y}
 $$
 
 where n is the number of columns of p == number of rows of q.

@@ -574,15 +574,23 @@ where c is the constant vector.  If we have an inverse for P (non-singular),
 whatever c is we can simply multiply both sides by $P^{-1}$ :
 
 $$
-P^{-1}.P.x = P{^-1}.c
+P^{-1}.P.x = P^{-1}.c
 $$
 
 $$
-=> I.x = P^{-1}.c  => x = P{^-1}.c
+=> I.x = P^{-1}.c  => x = P^{-1}.c
 $$
 
 And with the above we can simply read off the x values from the vector
-multiplication of the inverse and c.
+multiplication of the inverse and c.  This shows that invertibility
+implies a _single_ solution; non-invertible (singular) matrices have
+either no solution or infinitely many.
+
+To generate infinitely many solutions, the rows must be redundant
+and one must be expressible in terms of the others.  To generate
+no solutions we have linear dependence also, but with contradicting
+values for the variables.  So we see how linear (in)dependence,
+and (non-)singularity are entwined.
 
 A good question to ask is if the linear transformation spans $R^n$ -
 i.e. can all points in $R^n$ be reached after the linear transformation?

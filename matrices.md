@@ -435,6 +435,42 @@ multiplication of the inverse and c.  This shows that invertibility
 implies a _single_ solution; non-invertible (singular) matrices have
 either no solution or infinitely many.
 
+Note that $Ax = b$ must have either
+- a unique solution (non-singular)
+- no solution (singular)
+- infinite solutions (singular)
+
+It is not possible to have > 1 solution but < an infinite number.
+
+To prove this consider x and y as solutions; we can construct
+a new vector with aribrary real value $\alpha$ :
+
+$$
+z = \alpha . x + (1 - \alpha)y
+$$
+
+This works as a solution becauase if
+
+$$
+Ax = b ; Ay = b
+$$
+
+$$
+Az = A(\alpha .x ) + A(1 - \alpha)y
+$$
+
+$$
+=> \alpha(A.x) + Ay - \alpha(A.y)
+$$
+
+But since $A.x$ = b, $A.y = b$ , this becomes
+
+$$
+=> \alpha.b + b - \alpha.b = b
+$$
+
+Therefore $A.z = b$ and z is a solution also for any $\alpha$.
+
 To generate infinitely many solutions, the rows must be redundant
 and one must be expressible in terms of the others.  To generate
 no solutions we have linear dependence also, but with contradicting
@@ -467,6 +503,44 @@ $$
 
 i.e. the transformation transforms points in $R^2$ to points along
 the line represented by that vector.
+
+In a row-centric view of a matrix, we think of it as the coefficients
+of the variables x in $Ax = b$ , but we can also take a column-centric
+view, where the transformation denoted by A is a linear combination
+of the n columns; i.e.
+
+$$
+x_1.A_{:,1} + x_2.A_{:,2} + ... + x_n.A_{:,n}
+$$
+
+The span of the transformation represented by A is the set of all points
+obtainable by such linear combinations. This space is known as the
+column space of A.
+
+For $Ax = b$ to have a solution for all possible b, the column space must
+to reach all
+span $R^m$ (where m is the number of rows, hence the dimension of the
+space).
+
+So we see why linear dependence between columns is a problem; it restricts
+the span to < $R_m$.
+
+## Some special Matrices
+
+- Identity matrix: we have already seen the identity matrix; 1s on main
+  diagonal with zeros everywhere else;
+- Diagonal matrix: non-zero on main diagonal (not necessarily 1s).
+  Multiplication is easy because $diag(v).x$ just requires multiplying
+  each vector component by the appropriate diagonal entry.
+- Symmetric matrix: $A^T = A$
+- Orthogonal vectors: vectors are orthogonal if $x^Ty = 0$
+- Orthonormal vectors: orthogonal vectors with $||x||^2 = ||y||^2 = 1$
+- Orthonogonal matrix:  columns in $A$ are _orthonormal_, each with $L^2$
+  norm of 1.  An important fact is $A^TA = AA^T = I$. This is because
+  when we take the transpose of $A$, its orthonormal columns become rows;
+  then when we multiply each row with the columns, only the matching column
+  will be non-zero, so we end up with the identity matrix.  From this
+  we can see that $A^T = A^-1$ , since $A^TA = AA^T = I$.
 
 ## Determinant
 

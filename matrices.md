@@ -27,7 +27,15 @@ array([[1, 7],
        [3, 9]])
 >>> np.shape(A)
 (2, 3)
+>>> np.ndim(A)
+2
+>>> np.size(A)
+6
 ```
+
+- `np.ndim()` is the number of dimensions (2 for a matrix)
+- `np.shape()` is the number of rows/columns
+- `np.size()` is the number of elements
 
 We index elements via row i, column j as $A_{i,j}$ ,
 and in python we can select a whole row or column using `:`
@@ -38,6 +46,59 @@ instead of an index:
 9
 >>> A[:,1]
 array([2, 8])
+```
+
+We can create special matrices, consisting of all ones, zeros
+diagonal, or identity:
+
+```
+>>> A = np.zeros([2,2])
+>>> A
+array([[0., 0.],
+       [0., 0.]])
+>>> A = np.ones([2,2])
+>>> A
+array([[1., 1.],
+       [1., 1.]])
+>>> A = np.diag(np.array([1,1]))
+>>> A
+array([[1, 0],
+       [0, 1]])
+>>> A = np.identity(2)
+>>> A
+array([[1., 0.],
+       [0., 1.]])
+
+```
+
+There are many options for random matrices, for example
+`np.random.randn(r,c)` for random matrix between -1,1,
+`np.random.randint(low,high,shape)`:
+
+```
+>>> A = np.random.randn(2,3)
+>>> A
+array([[-1.18656341, -0.40310253,  0.28816619],
+       [ 0.23597831, -0.13745851,  0.93330382]])
+>>> A = np.random.randint(10, 20, [2,2])
+>>> A
+array([[10, 14],
+       [14, 11]])
+>>> 
+
+```
+
+We can reshape a matrix vi `np.reshape(matrix, [r,c])`:
+
+```
+>>> A = np.ones([2,3])
+>>> np.reshape(A,(6,1))
+array([[1.],
+       [1.],
+       [1.],
+       [1.],
+       [1.],
+       [1.]])
 ```
 
 ## Matrix operations
@@ -141,6 +202,49 @@ $$
 
 Rearranging, Eq 1 and 2 are equivalent; all that changes is the order
 of the multiplication.
+
+## Broadcasting, slicing, stacking in numpy
+
+The concept of broadcasting is important; it allows us to carry
+out operations between objects whose dimensions do not match; for
+example multiplying a vector by a scalar.
+
+In numpy it extends to operations like adding a vector to a matrix:
+
+```
+>>> A = np.ones([2,3])
+>>> B = np.ones([2,1])
+>>> A+B
+array([[2., 2., 2.],
+       [2., 2., 2.]])
+
+>>>
+```
+
+We can also retrieve a subset by indexing using `[start]:[end]`; for
+example to retrieve the 2/3rd rows/columns from 
+
+```
+>>> A = np.ones([3,3])
+>>> A[1:,1:]
+array([[1., 1.],
+       [1., 1.]])
+```
+
+We can also stack arrays horizontally, vertically via `np.hstack()`
+and `np.vstack()`:
+
+```
+>>> B = 2 * A
+>>> B
+array([[2., 2., 2.],
+       [2., 2., 2.],
+       [2., 2., 2.]])
+>>> np.hstack((A,B))
+array([[1., 1., 1., 2., 2., 2.],
+       [1., 1., 1., 2., 2., 2.],
+       [1., 1., 1., 2., 2., 2.]])
+```
 
 ## Geometric interpretation
 

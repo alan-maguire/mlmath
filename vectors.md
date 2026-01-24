@@ -20,11 +20,11 @@ In python, we create a vectors using numpy
 ```
 $ python3
 >>> import numpy as np
->>> x = np.array([[1],[2],[3]])
+>>> x = np.array([1],[2],[3])
 >>> x
-array([[1],
+array([1],
        [2],
-       [3]])
+       [3])
 >>> 
 ```
 
@@ -33,7 +33,7 @@ $x_i$ : on python we start from index 0:
 
 ```
 >>> x[0]
-array([1])
+1
 ```
 
 x is a column vector; to create row vector
@@ -45,16 +45,17 @@ x = \begin{bmatrix}
 $$
 
 ```
->>> x2 = np.array([[1,2,3]])
+>>> x2 = np.array([1,2,3])
 >>> x2
-array([[1, 2, 3]])
+array([1, 2, 3])
 
 ```
 
 ## Transpose
 
-We can flip a matrix from columnar to row form (or vice
-versa) using the transpose operation:
+We can flip a vector from columnar to row form (or vice
+versa) using the transpose operation, but we must have
+defined it as 2-dimensional first;
 
 $$
 x^T = \begin{bmatrix}
@@ -65,6 +66,7 @@ $$
 In python:
 
 ```
+>>> x = np.array([[1],[2],[3]])
 >>> z = x.T
 >>> z
 array([[1, 2, 3]])

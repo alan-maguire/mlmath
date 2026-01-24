@@ -602,6 +602,40 @@ $$
 		det(A) = \sum_{j=1}^n (-1)^{i+j} . a_{i,j} . cofactor(A_{i,j})
 $$
 
+- For 3x3 matrices we can use a particular technique of Laplace expansion;
+  we sum the products of all the diagonals from top left to bottom right,
+  wrapping around and subtracting diagonals from top right to bottom left.
+
+For example, to compute the determinant for matrix
+
+$$
+\begin{bmatrix}
+1 & 2 & 5 \\
+0 & 3 & -2 \\
+2 & 4 & 10 \\
+\end{bmatrix}
+$$
+
+we get
+
+$$
+((1)(3)(10)) + ((2)(-2)(2)) + ((5)(0)(4)) - ( ((5)(3)(2)) + ((1)(-2)(4)) + ((2)(0)(10)) )
+$$
+
+$$
+=> 30 - 8 + 0 - (30 - 8 + 0) = 0
+$$
+
+Hence it is singular.
+
+We can use
+
+```
+np.linalg.det(A)
+```
+
+to compute the determinant of a matrix in python.
+
 foo
 bar
 baz

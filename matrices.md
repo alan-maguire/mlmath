@@ -48,6 +48,23 @@ instead of an index:
 array([2, 8])
 ```
 
+We can index whole rows/columns using double parentheses; e.g.
+to create B which is A with second and third rows swapped:
+
+```
+>>> A
+array([[2, 1, 5],
+       [1, 3, 1],
+       [3, 4, 6]])
+>>> B=np.copy(A)
+>>> B[[2,1]]=B[[1,2]]
+>>> B
+array([[2, 1, 5],
+       [3, 4, 6],
+       [1, 3, 1]])
+>>> 
+```
+
 We can create special matrices, consisting of all ones, zeros
 diagonal, or identity:
 
@@ -164,6 +181,23 @@ $$
 
 where n is the number of columns of p == number of rows of q.
 
+In python, matrix multiplication is done via `np.matmul()` or
+the '@' operator, and `np.dot()` works too via broadcasting:
+
+```
+>>> P = np.array([[5,2,0],[7,3,1]])
+>>> Q = np.array([[2,1],[7,3],[8,0]])
+>>> P@Q
+array([[24, 11],
+       [43, 16]])
+>>> np.matmul(P,Q)
+array([[24, 11],
+       [43, 16]])
+>>> np.dot(P,Q)
+array([[24, 11],
+       [43, 16]])
+```
+ 
 ## Properties of matrix multiplication
 
 - associative: $A.(B.C) = (A.B).C$
@@ -418,6 +452,104 @@ We will check our work:
 array([[ 0.25 , -0.25 ],
        [-0.125,  0.625]])
 
+```
+
+## Solving systems of linear equations with matrices
+
+We can use matrices to solve systems of linear equations.
+
+1. We construct a matrix where the rows are the coefficents
+   of the variables
+2. We augment it with the constants on the right-hand side
+   of the equations in a column
+3. We then carry out Gaussian elimination
+	- divide each row by its leftmost coefficient
+	- subtract top row from each other row
+	- repeat
+
+We end up with an upper triangular matrix where each leftmost
+element is 1 (a pivot); the rank of the matrix is the number of
+such pivots. It is in row-echelon form.  We can back-substitute
+to solve or fix up to be reduced-row echelon form (where there
+are 0s above each 1).
+
+Example:
+
+Solve
+
+$$
+x + 3y = 15
+$$
+
+$$
+3x + 12y = 3
+$$
+
+Create the augmented matrix:
+
+$$
+\begin{bmatrix}
+1 & 3 & 15 \\
+3 & 12 & 3 \\
+\end{bmatrix}
+$$
+
+r2 -> 1/3(r2)
+
+$$
+\begin{bmatrix}
+1 & 3 & 15 \\
+1 & 4 & 1 \\
+\end{bmatrix}
+$$
+
+r2 -> r1 - r2
+
+$$
+\begin{bmatrix}
+1 & 3 & 15 \\
+0 & -1 & 14 \\
+\end{bmatrix}
+$$
+
+r2 -> -r2
+
+$$
+\begin{bmatrix}
+1 & 3 & 15 \\
+0 & 1 & -14 \\
+\end{bmatrix}
+$$
+
+At this point we are in row-echelon form and can back-substitute.
+To finish in reduced row-echelon form:
+
+r1 -> r1 -3(r2)
+
+$$
+\begin{bmatrix}
+1 & 0 & 57 \\
+0 & 1 & -14 \\
+\end{bmatrix}
+$$
+
+So we see
+
+$$
+x = 57, y = -14
+$$
+
+We can use `np.linalg.solve()` to solve Ax = b; for example
+
+```
+>>> A
+array([[4, 1],
+       [1, 1]])
+>>> b = np.array([2,1])
+>>> np.linalg.solve(A,b)
+array([0.33333333, 0.66666667])
+>>> A@np.linalg.solve(A,b)
+array([2., 1.])
 ```
 
 ## Matrices as systems of equations
@@ -739,6 +871,285 @@ np.linalg.det(A)
 ```
 
 to compute the determinant of a matrix in python.
+
+One thing to note in passing about determinants and Gaussian elimination;
+it uses two mechanisms that preserve the singularity/non-singularity
+
+- adding one row to another results in the same determinant
+- multiplying a row by a constant makes a non-zero determinant non-zero,
+  and a zero determinant still zero
+
+Also note that the determinant of $A^-1$ is $\frac{1}{det(A)}$ ; we can
+see this since $A^-1.A = I$ and $det(I) = 1$.
+
+The geometric interpretation of the determinant is that it is the
+area or volume of the transformation of the unit square formed by
+$[0,0], [0,1],[1,0],[1,1]$; thus when the determinant is zero
+we get a degenerate shape of area/volume 0 like a line or point in 2d.
+
+## Eigenvectors and eigenvalues
+
+Recall that a basis is a set of vectors that
+
+- spans a vector space; and
+- is linearly independent
+
+So for $R^3$ for example we would need 3 linearly independent
+vectors to form a basis to span the space.
+
+Eigenvectors are vectors $v_n$ such that
+
+$$
+Av_n = \lambda v_n
+$$
+
+What this means geometrically is that $v_n$ points in the same
+direction after the linear transformation.  We call $\lambda$
+the eigenvalue and $v_n$ the eigenvector.  The eigenvalue
+gives us the amout of stretch/shrink that is applied.
+
+An eigenbasis is a basis for a linear transformation that
+consists of eigenvectors.  What is critical about the eigenbasis
+is that it much more efficient.
+
+If we have the eigenvalues/eigenvectors for a matrix, if we
+can figure out the transformation for a vector much more
+cheaply. We simply
+
+1. express the vector as a linear combination of the eigenvectors
+2. take the coefficents of each of these, multiply them by the
+   associated eigenvalue
+
+For example, for the following linear transformation A:
+
+$$
+A = \begin{bmatrix}
+2 & 1 \\
+0 & 3
+\end{bmatrix}
+$$
+
+We have eigenvectors $e_1$
+
+$$
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+$$
+
+with eigenvalue $\lambda_1$ 2; and eigenvector $e_2$
+
+$$
+\begin{bmatrix}
+1 \\
+1
+\end{bmatrix}
+$$
+
+with eigenvalue $\lambda_2$ 3.
+
+To get the transformation of
+
+$$
+\begin{bmatrix}
+-1 \\
+2
+\end{bmatrix}
+$$
+
+we express it as a linear combination of $e_1 , e_2$ :
+
+$$
+-3 (e1) + 2 (e2)
+$$
+
+So $A$ mutiplied by the above will be
+
+$$
+\lambda_1 (-3)(e1) + \lambda_2 (2) (e2)
+$$
+
+$$
+=> (2)(-3)\begin{bmatrix}
+1 \\
+0
+\end{bmatrix} + (3)(2)\begin{bmatrix}
+1 \\
+1
+\end{bmatrix}
+$$
+
+$$
+=> \begin{bmatrix}
+-6 \\
+0
+\end{bmatrix} + \begin{bmatrix}
+6 \\
+6
+\end{bmatrix}
+$$
+
+$$
+=> \begin{bmatrix}
+0 \\
+6
+\end{bmatrix}
+$$
+
+## Computing eigenvectors and eigenvalues
+
+If
+
+$$
+Av = \lambda v
+$$
+
+$$
+Av - \lambda v = 0
+$$
+
+So
+
+$$
+(A-\lambda I)v = 0
+$$
+
+This is true for v at $(0,0,...)$ but for the non-trivial
+eigenvector case it is true when
+
+$$
+det(A-\lambda I)v = 0
+$$
+
+We can solve for the above, getting the characteristic equation.
+Consider
+
+$$
+A = \begin{bmatrix}
+4 & 1 \\
+2 & 3
+\end{bmatrix}
+$$
+
+$$
+A - \lambda I = \begin{bmatrix}
+4 - \lambda & 1 \\
+2 & 3 - \lambda
+\end{bmatrix}
+$$
+
+So, given that the determinant is 0,
+
+$$
+(4 - \lambda)(3 - \lambda) - 2 = 0
+$$
+
+THe characteristic polynomial is:
+
+$$
+=> \lambda^2 -7\lambda + 10 = 0
+$$
+
+$$
+=> (\lambda -5)(\lambda - 2) = 0
+$$
+
+So
+
+$$
+\lambda = 5, 2
+$$
+
+Now we have the eigenvalues, to get the eigenvector
+for each, substitute $\lambda$ into $(A-\lambda I)$ :
+
+$$
+A - 5I = \begin{bmatrix}
+4-5 & 1 \\
+2 & 3-5
+\end{bmatrix} = \begin{bmatrix}
+-1 & 1 \\
+2 & -2
+\end{bmatrix}
+$$
+
+Now we use this in $(A-\lambda I)v = 0$ as follows:
+
+$$
+=> \begin{bmatrix}
+-1 & 1 \\
+2 & -2
+\end{bmatrix} 
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix} = \begin{bmatrix}
+0 \\
+0
+\end{bmatrix}
+$$
+
+From this, we get equations
+
+$$
+-x + y = 0
+$$
+
+$$
+2x -2y = 0
+$$
+
+These simplify to $y = x$ so we use eigenvector
+
+$$
+\begin{bmatrix}
+1 \\
+1
+\end{bmatrix}
+$$
+
+Similarly, for $\lambda = 2$, $A - 2I$ becomes
+
+$$
+\begin{bmatrix}
+2 & 1 \\
+2 & 1
+\end{bmatrix}
+$$
+
+So again we use this in $(A-\lambda I)v = 0$ as follows:
+
+$$
+=> \begin{bmatrix}
+2 & 1 \\
+2 & 1 
+\end{bmatrix} 
+\begin{bmatrix}
+x \\
+y
+\end{bmatrix} = \begin{bmatrix}
+0 \\
+0
+\end{bmatrix}
+$$
+
+From this, we get equation
+
+$$
+2x + y = 0
+$$
+
+So for this we can use the vector
+
+$$
+\begin{bmatrix}
+1 \\
+-2
+\end{bmatrix}
+$$
+
+as eigenvector.
 
 foo
 bar

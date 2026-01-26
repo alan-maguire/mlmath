@@ -1151,6 +1151,25 @@ $$
 
 as eigenvector.
 
+Eigenvalues can be computed via `np.linalg.eigvals()`;
+eigenvalues and eigenvectors can be computed via
+`np.linalg.eig()`:
+
+```
+>>> A = np.array([[4,1],[2,3]])
+>>> np.linalg.eigvals(A)
+array([5., 2.])
+>>> eigenvals, eigenvecs = np.linalg.eig(A)
+>>> eigenvals
+array([5., 2.])
+>>> eigenvecs
+array([[ 0.70710678, -0.4472136 ],
+       [ 0.70710678,  0.89442719]])
+```
+
+Note that `np.linalg.eig()` always gives vectors with
+$L^2$ norm 1.
+
 foo
 bar
 baz

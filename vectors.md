@@ -333,7 +333,7 @@ $$
 gives us the coefficients to use in front of the new basis
 after the change of basis.
 
-# Basis
+## Basis
 
 A basis is a set of n vectors that
 

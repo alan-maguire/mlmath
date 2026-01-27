@@ -329,6 +329,38 @@ $$A.(B.x) = (A.B)x$$
 multiplying A.B by x is equivalent to first applying the linear
 transformation B to x and then applying A to the result.
 
+For example consider the matrix representing a $90^o$ clockwise
+rotation (to see that this is the right matrix, remember the first
+column is where $\begin{bmatrix}
+1 \
+0
+\end{bmatrix} is mapped too; ditto for the second column.
+
+The transformation is this:
+
+$$
+\begin{bmatrix}
+0 & 1 \\
+-1 & 0
+\end{bmatrix}
+$$
+
+Applying this transformation twice is equivalent to multiplying
+A by itself or rotating $180^o$:
+
+$$
+\begin{bmatrix}
+0 & 1 \\
+-1 & 0
+\end{bmatrix} \begin{bmatrix}
+0 & 1 \\
+-1 & 0
+\end{bmatrix} = \begin{bmatrix}
+-1 & 0 \\
+0 & -1
+\end{bmatrix}
+$$
+
 ## Matrix inverse
 
 Inverting a matrix - where $A^{-1}$ for square matrix A is

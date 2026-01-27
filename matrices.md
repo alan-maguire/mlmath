@@ -1022,6 +1022,12 @@ $$
 det(A-\lambda I)v = 0
 $$
 
+...since if $(A - \lambda I)$ was invertible, $det(A - \lambda I)$
+would be non-zero and we could just multiply by the inverse;
+then we would get
+
+$v = 0$ for $v \neq (0, 0, ...)$ which is a contradiction.
+
 We can solve for the above, getting the characteristic equation.
 Consider
 
@@ -1169,6 +1175,23 @@ array([[ 0.70710678, -0.4472136 ],
 
 Note that `np.linalg.eig()` always gives vectors with
 $L^2$ norm 1.
+
+Note that multiple eigenvectors can share the same eigenvalue,
+but where eigenvalues are distinct the associated eigenvalues
+will be linearly independent.
+
+The conceptual value of eigenvalues/eigenvectors is this - in
+the normal course of events, a linear transformation mixes
+up values associated with the variables.  However with an
+eigenbasis, we can always express the result as a set of
+scalar multiplications of those eigenbases (we are not always
+guaranteed that we will have n eigenvalues, so the eigenvalues
+may not map to the full $R^n$ however).
+
+Further the eigenvalues tell us the degree of growth/shrink
+associated with each eigenvector so we can compress our
+repesentations to make them a combination of the first n
+eigenvectors; we will see the steps later.
 
 foo
 bar

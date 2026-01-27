@@ -15,6 +15,9 @@ Vectors are often conceptualized geometrically as a line in
 n-dimensional space, with each element being the length along
 the relevant axis.
 
+Vectors are abstracted as n-tuples that obey scalar multiplication
+and addition; see below for how these are done.
+
 In python, we create a vectors using numpy
 
 ```
@@ -193,16 +196,160 @@ x^T.y = ||proj(x,y)||.||y||
 $$
 
 $$
-proj(x, y) = \frac{x^T.y}{||y||} y
+proj(x, y) = \frac{x^T.y}{||y||||y||} y
 $$
 
-Note tha additional y vector since the value in front of it
+Note the additional y vector since the value in front of it
 simply gives the length of the projection along y; we still
 need the y vector to have the magnitude and direction of the
-projection vector.
+projection vector. We also need to scale by the length of y
+to get a unit vector in the direction of y to multiply the
+scalar projection by, hence the additional $||y||$ in the denominator.
 
 This geometric interpretation also tells us when the projection
 of x onto y is positive, the dot product of $x^T.y$ will be
 positive, while if it is negative the dot product will be too.
 And of course if they are orthogonal the projection is zero.
+
+## Change of basis
+
+A vector in $R^n$ can be expressed via different linear combinations
+of a set of n basis vectors.  The standard bases are sometimes called
+$e_1, e_2, .. e_n$ and these are vectors of the form
+
+$$
+\begin{bmatrix}
+1 \\
+0 \\
+.. \\
+0
+\end{bmatrix}, \begin{bmatrix}
+0 \\
+1 \\
+0 \\
+..
+\end{bmatrix}, ...,  \begin{bmatrix}
+0 \\
+.. \\
+0 \\
+1
+\end{bmatrix}
+$$
+
+We can however describe a vector with an arbitrary set of basis
+vectors.  It is always best to use orthogonal basis vectors as
+these simplify the change of basis.
+
+With an change of basis to an orthogonal set of basis, we can use
+projection of new vectors $r_1,...r_n$ onto $e_1,..,e_n$.
+
+First verify new basis is orthogonal, i.e. $(r_1)(r_2)...(r_n) = 0$.
+
+For example change basis of
+$$
+r = \begin{bmatrix}
+3 \\
+4
+\end{bmatrix}
+$$
+
+to be expressed via $b_1, b_2$ :
+
+$$
+b_1 = \begin{bmatrix}
+2 \\
+1
+\end{bmatrix}
+$$
+
+$$
+b_2 = \begin{bmatrix}
+-2 \\
+4
+\end{bmatrix}
+$$
+
+First verify $b_1.b_2 = 0$ :
+
+$$
+(2)(-2) - (1)(4) = 0
+$$
+
+Now compute projection of $r_1$ onto $b_1$ :
+
+$$
+\frac{r_e . b_1}{|b_1|^2} = \frac{(3)(2) + (4)(1)}{(2^2 + 1^2} = \frac{10}{5} = 2
+$$
+
+$$
+=> \frac{r_e . b_1}{|b_1|^2} b_1 = 2 \begin{bmatrix}
+2 \\
+1
+\end{bmatrix} = \begin{bmatrix}
+4 \\
+2
+\end{bmatrix}
+$$
+
+Now compute projection of $r_2$ onto $b_2$ :
+
+$$
+\frac{r_e . b_2}{|b_2|^2} = \frac{(3)(-2) + (4)(4)}{(2^2 + 1^2} = \frac{10}{20} =
+\frac{1}{2}
+$$
+
+$$
+=> \frac{r_e . b_2}{|b_2|^2} b_2 = \frac{1}{2} \begin{bmatrix}
+-2 \\
+4
+\end{bmatrix} = \begin{bmatrix}
+-1 \\
+2
+\end{bmatrix}
+$$
+
+So in the new basis we get
+
+$$
+2 \begin{bmatrix}
+2 \\
+1
+\end{bmatrix} + \frac{1}{2} \begin{bmatrix}
+-2 \\
+4
+\end{bmatrix} = \begin{bmatrix}
+4 \\
+2
+\end{bmatrix} + \begin{bmatrix}
+-1 \\
+2
+\end{bmatrix} = \begin{bmatrix}
+3 \\
+4
+\end{bmatrix}
+$$
+
+...which was our original vector.  So we see the projection
+gives us the coefficients to use in front of the new basis
+after the change of basis.
+
+# Basis
+
+A basis is a set of n vectors that
+
+- are not linear combinations of each other (are linearly independent)
+- span the space $R^n$
+
+It is best to use orthonormal basis vectors where each vector is
+
+- orthogonal to all the others
+- has length 1
+
+We often want to change basis to a basis that is more representative
+of our data so we can express instances of data in a more concise
+form.  We will see later how one such approach uses a special basis
+called the eigenbasis to support such conciseness.
+
+Many neural networks transform input into more salient features using
+a basis change such that the bases are the features of interest.
 

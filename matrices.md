@@ -912,6 +912,114 @@ constant vector b;
 - Finally it does back-substitution to reach reduced row-echelon form
 - Returns the final column of the matrix as the solutions
 
+```
+>>> import GaussianElimination as g
+>>> import numpy as np
+>>> A = np.array([[1, 1, 0], [0, 1, 1], [0, 0, 1]])
+>>> b = np.array([4,5,6])
+>>> g.GaussianElimination(A,b)
+array([ 5., -1.,  6.])
+>>> np.linalg.solve(A,b)
+array([ 5., -1.,  6.])
+>>> np.allclose(g.GaussianElimination(A,b),np.linalg.solve(A,b))
+True
+```
+
+We can run in debug mode to see the steps:
+
+```
+>>> g.GaussianElimination(A,b,debug=True)
+Reducing row 0 of:
+[[1. 1. 0. 4.]
+ [0. 1. 1. 5.]
+ [0. 0. 1. 6.]]
+
+r_0 -> (r_0)/1.0:
+
+[[1. 1. 0. 4.]
+ [0. 1. 1. 5.]
+ [0. 0. 1. 6.]]
+
+Reducing row 1 of:
+[[1. 1. 0. 4.]
+ [0. 1. 1. 5.]
+ [0. 0. 1. 6.]]
+
+r_1 -> r_1 - (0.0)r_0:
+
+[[1. 1. 0. 4.]
+ [0. 1. 1. 5.]
+ [0. 0. 1. 6.]]
+
+r_1 -> (r_1)/1.0:
+
+[[1. 1. 0. 4.]
+ [0. 1. 1. 5.]
+ [0. 0. 1. 6.]]
+
+Reducing row 2 of:
+[[1. 1. 0. 4.]
+ [0. 1. 1. 5.]
+ [0. 0. 1. 6.]]
+
+r_2 -> r_2 - (0.0)r_0:
+
+[[1. 1. 0. 4.]
+ [0. 1. 1. 5.]
+ [0. 0. 1. 6.]]
+
+r_2 -> r_2 - (0.0)r_1:
+
+[[1. 1. 0. 4.]
+ [0. 1. 1. 5.]
+ [0. 0. 1. 6.]]
+
+r_2 -> (r_2)/1.0:
+
+[[1. 1. 0. 4.]
+ [0. 1. 1. 5.]
+ [0. 0. 1. 6.]]
+
+Back-substituting row 2 of: 
+[[1. 1. 0. 4.]
+ [0. 1. 1. 5.]
+ [0. 0. 1. 6.]]
+
+Back-substituting row 1 of: 
+[[1. 1. 0. 4.]
+ [0. 1. 1. 5.]
+ [0. 0. 1. 6.]]
+
+r_1 -> r_1 - (1.0)r_2:
+
+[[ 1.  1.  0.  4.]
+ [ 0.  1.  0. -1.]
+ [ 0.  0.  1.  6.]]
+
+Back-substituting row 0 of: 
+[[ 1.  1.  0.  4.]
+ [ 0.  1.  0. -1.]
+ [ 0.  0.  1.  6.]]
+
+r_0 -> r_0 - (1.0)r_1:
+
+[[ 1.  0.  0.  5.]
+ [ 0.  1.  0. -1.]
+ [ 0.  0.  1.  6.]]
+
+r_0 -> r_0 - (0.0)r_2:
+
+[[ 1.  0.  0.  5.]
+ [ 0.  1.  0. -1.]
+ [ 0.  0.  1.  6.]]
+array([ 5., -1.,  6.])
+>>> g.GaussianElimination(A,b,debug=False)
+array([ 5., -1.,  6.])
+>>> np.linalg.solve(A,b)
+array([ 5., -1.,  6.])
+>>> 
+```
+
 ## Some special Matrices
 
 - Identity matrix: we have already seen the identity matrix; 1s on main

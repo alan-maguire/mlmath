@@ -237,7 +237,7 @@ $$
 Rearranging, Eq 1 and 2 are equivalent; all that changes is the order
 of the multiplication.
 
-## Broadcasting, slicing, stacking in numpy
+## Broadcasting, slicing, stacking and equality in numpy
 
 The concept of broadcasting is important; it allows us to carry
 out operations between objects whose dimensions do not match; for
@@ -279,6 +279,10 @@ array([[1., 1., 1., 2., 2., 2.],
        [1., 1., 1., 2., 2., 2.],
        [1., 1., 1., 2., 2., 2.]])
 ```
+
+Testing matrices for equality is tricky because we want to
+allow for values close but not identical; `np.allclose(A,B)`
+will do this.
 
 ## Geometric interpretation
 
@@ -527,7 +531,7 @@ $$
 $$
 
 $$
-r_2 -> 1/3(r_2)
+r_2 -> \frac{1}{3}(r_2)
 $$
 
 $$

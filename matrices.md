@@ -526,7 +526,9 @@ $$
 \end{bmatrix}
 $$
 
-r2 -> 1/3(r2)
+$$
+r_2 -> 1/3(r_2)
+$$
 
 $$
 \begin{bmatrix}
@@ -535,7 +537,9 @@ $$
 \end{bmatrix}
 $$
 
-r2 -> r1 - r2
+$$
+r_2 -> r_1 - r_2
+$$
 
 $$
 \begin{bmatrix}
@@ -544,7 +548,9 @@ $$
 \end{bmatrix}
 $$
 
-r2 -> -r2
+$$
+r_2 -> -r_2
+$$
 
 $$
 \begin{bmatrix}
@@ -556,7 +562,9 @@ $$
 At this point we are in row-echelon form and can back-substitute.
 To finish in reduced row-echelon form:
 
-r1 -> r1 -3(r2)
+$$
+r_1 -> r_1 -3(r_2)
+$$
 
 $$
 \begin{bmatrix}
@@ -616,7 +624,7 @@ for each one we solve for a column of b.  We can do them
 all at once.
 
 $$
-r2 -> r2 - r1 , r3 -> -r3 + r1
+r_2 -> r_2 - r_1 , r_3 -> -r_3 + r_1
 $$
 
 $$
@@ -636,8 +644,8 @@ b_{31} & b_{22} & b_{33}
 $$
 
 $$
-r1 -> r1 - 3r3
-r2 -> r2 - r3
+r_1 -> r_1 - 3r_3
+r_2 -> r_2 - r_3
 $$
 
 $$
@@ -657,7 +665,7 @@ b_{31} & b_{22} & b_{33}
 $$
 
 $$
-r1 -> r1 - r2
+r_1 -> r_1 - r_2
 $$
 
 $$
@@ -686,6 +694,78 @@ array([[1, 0, 0],
        [0, 1, 0],
        [0, 0, 1]])
 ```
+
+Another way to view Gaussian elimination is as a set of
+matrix multiplications $E_1, ... . E_n$ such that
+
+$$
+E_nE_{n-1}..E_1 A = I
+$$
+
+By multiplying on the right by $A^-1$ we get
+
+$$
+E_nE_{n-1}..E_1 I = A^{-1}
+$$
+
+So those row operations that reduce A to the identity matrix
+applied to $I$ convert it to $A^-1$.
+
+Examples of row operations in matrix form follow.
+
+Adding a multiple of one row to another $r_2 -> r_2 + 3r_1$ :
+
+$$
+\begin{bmatrix}
+1 & 0 & 0 \\
+3 & 1 & 0 \\
+0 & 0 & 0
+\end{bmatrix} \begin{bmatrix}
+a & b & c \\
+d & e & f \\
+g & h & i
+\end{bmatrix} = \begin{bmatrix}
+a & b & c \\
+3a + d & 3b + e & 3c + f \\
+g & h & i
+\end{bmatrix}
+$$
+
+Multiplying a row by a constant $r_3 => \frac{1}{3} r_3$ :
+
+$$
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & \frac{1}{3}
+\end{bmatrix} \begin{bmatrix}
+a & b & c \\
+d & e & f \\
+g & h & i
+\end{bmatrix} = \begin{bmatrix}
+a & b & c \\
+d & e & f \\
+\frac{1}{3}g & \frac{1}{3}h & \frac{1}{3}i
+\end{bmatrix}
+$$
+
+Swapping two rows $r_1 => r_2 , r_2 = > r_1$ :
+
+$$
+\begin{bmatrix}
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & 1
+\end{bmatrix} \begin{bmatrix}
+a & b & c \\
+d & e & f \\
+g & h & i
+\end{bmatrix} = \begin{bmatrix}
+d & e & f \\
+a & b & c \\
+g & h & i
+\end{bmatrix}
+$$
 
 ## Matrices as systems of equations
 
@@ -902,7 +982,7 @@ be undone via $A^{-1}$.  However, if the transformation collapses
 to a plane, a line or a point with dimension less than $n$ we have lost
 information that we cannot recover; so there is no inverse mapping.
 
-## Building a solver in python
+## Building a linear equation solver in python
 
 [See here for an implementation of Gaussian elimination](./src/GaussianElimination.py)
 

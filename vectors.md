@@ -178,6 +178,38 @@ $$
 x^T.y = ||x||.||y||\cos(\theta)
 $$
 
+We derive this using the law of cosines from trigonometry.
+
+Consider triangle x, y, z and angle $\theta$ opposite z:
+
+$$
+z^2 = x^2 + y^2 - 2xycos(\theta)
+$$
+
+z can be expressed as $x - y$, so we get
+
+$$
+{|| x - y ||}^2 = {||x||}^2 + {||y||}^2 - 2||x||||y||cos(\theta)
+$$
+
+using the fact $||x||^2|| = x.x$, we get
+
+$$
+(x - y).(x - y) = (x.x) + (y.y) - 2||x||||y||cos(\theta)
+$$
+
+Multiplying out left side we get
+
+$$
+x.x + y.y - 2.x.y = x.x + y.y -2||x||||y||cos(\theta)
+$$
+
+Cancelling out $$x.x, y.y$$ from both sides and dividing by -2 we get
+
+$$
+x.y = ||x||||y||cos(\theta)
+$$
+
 One consequence of this is that perpendicular vectors have
 a dot product of 0, while parallel ones have a dot product
 of $||x||.||y||$ (the product of their $L^2$ norms).  In fact,
@@ -188,12 +220,33 @@ x onto y; the adjacent to angle $\theta$ is the projection
 $||x||.\cos(\theta)$ .  All that is missing is to multiply
 by $||y||$ and we have the dot product formula.
 
-This also makes it much easier to compute projections;
-to compute the projection x onto y. If
+Scalar projection of x onto y (from Pythagorus theorem):
 
 $$
-x^T.y = ||proj(x,y)||.||y||
+s(x,y) = ||y||cos(\theta)
 $$
+
+From the dot product formula above, we know
+
+$$
+x.y = ||x||.||y||cos(\theta)
+$$
+
+So
+
+$$
+||y||cos(\theta) = \frac{x.y}{||x||}
+$$
+
+Therefore
+
+$$
+s(x,y) = \frac{x.y}{||x||} 
+$$
+
+This makes it much easier to compute projections;
+to compute the projection x onto y. We compute the
+vector projection of x onto y via
 
 $$
 proj(x, y) = \frac{x^T.y}{||y||||y||} y

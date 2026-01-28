@@ -584,6 +584,109 @@ array([0.33333333, 0.66666667])
 array([2., 1.])
 ```
 
+A neat way to do compute the inverse is to solve the
+set of equations at once where
+
+$$
+AB = I
+$$
+
+B is the invervse matrix.
+
+As an example
+
+$$
+\begin{bmatrix}
+1 & 1 & 3 \\
+1 & 2 & 4 \\
+1 & 1 & 2
+\end{bmatrix} \begin{bmatrix}
+b_{11} & b_{12} & b_{13} \\
+b_{21} & b_{22} & b_{33} \\
+b_{31} & b_{22} & b_{33}
+\end{bmatrix} = \begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+This is essentially 3 Gaussian eliminations at once where
+for each one we solve for a column of b.  We can do them
+all at once.
+
+$$
+r2 -> r2 - r1 , r3 -> -r3 + r1
+$$
+
+$$
+\begin{bmatrix}
+1 & 1 & 3 \\
+0 & 1 & 1 \\
+0 & 0 & 1
+\end{bmatrix} \begin{bmatrix}
+b_{11} & b_{12} & b_{13} \\
+b_{21} & b_{22} & b_{33} \\
+b_{31} & b_{22} & b_{33}
+\end{bmatrix} = \begin{bmatrix}
+1 & 0 & 0 \\
+-1 & 1 & 0 \\
+1 & 0 & -11
+\end{bmatrix}
+$$
+
+$$
+r1 -> r1 - 3r3
+r2 -> r2 - r3
+$$
+
+$$
+\begin{bmatrix}
+1 & 1 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix} \begin{bmatrix}
+b_{11} & b_{12} & b_{13} \\
+b_{21} & b_{22} & b_{23} \\
+b_{31} & b_{22} & b_{33}
+\end{bmatrix} = \begin{bmatrix}
+-2 & 0 & 3 \\
+-2 & 1 & 1 \\
+1 & 0 & -1
+\end{bmatrix}
+$$
+
+$$
+r1 -> r1 - r2
+$$
+
+$$
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix} \begin{bmatrix}
+b_{11} & b_{12} & b_{13} \\
+b_{21} & b_{22} & b_{23} \\
+b_{31} & b_{22} & b_{33}
+\end{bmatrix} = \begin{bmatrix}
+0 & -1 & 2 \\
+-2 & 1 & 1 \\
+1 & 0 & -1
+\end{bmatrix}
+$$
+
+So this is our inverse; checking $AB = I$
+
+```
+>>> A = np.array([[1,1,3],[1,2,4],[1,1,2]])
+>>> B = np.array([[0,-1,2],[-2,1,1],[1,0,-1]])
+>>> A@B
+array([[1, 0, 0],
+       [0, 1, 0],
+       [0, 0, 1]])
+```
+
 ## Matrices as systems of equations
 
 Not all square matrices have inverses, just as not all numbers
@@ -793,6 +896,22 @@ space).
 So we see why linear dependence between columns is a problem; it restricts
 the span to < $R_m$.
 
+Another way to think about this is if a matrix $A$ has an inverse it
+spans the space and when we transform a vector the transformation can
+be undone via $A^{-1}$.  However, if the transformation collapses
+to a plane, a line or a point with dimension less than $n$ we have lost
+information that we cannot recover; so there is no inverse mapping.
+
+## Building a solver in python
+
+[See here for an implementation of Gaussian elimination](./src/GaussianElimination.py)
+
+- First it creates the augmented matrix from the mXm matrix A and the
+constant vector b;
+- It carries out row reduction to get to row-echelon form;
+- Finally it does back-substitution to reach reduced row-echelon form
+- Returns the final column of the matrix as the solutions
+
 ## Some special Matrices
 
 - Identity matrix: we have already seen the identity matrix; 1s on main
@@ -912,12 +1031,43 @@ it uses two mechanisms that preserve the singularity/non-singularity
   and a zero determinant still zero
 
 Also note that the determinant of $A^-1$ is $\frac{1}{det(A)}$ ; we can
-see this since $A^-1.A = I$ and $det(I) = 1$.
+see this since $A^-1.A = I$ and $det(I) = 1$.  So $A$ scales space
+by $det(A)$ and $A^{-1}$ reverses that, scaling space by $\frac{1}{det(A)}$
 
 The geometric interpretation of the determinant is that it is the
 area or volume of the transformation of the unit square formed by
 $[0,0], [0,1],[1,0],[1,1]$; thus when the determinant is zero
 we get a degenerate shape of area/volume 0 like a line or point in 2d.
+
+You may remember the hack for computing the inverse of a 2x2
+matrix:
+
+$$
+A^{-1} = {\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix}}^{-1} =
+\frac{1}{det(A)}\begin{bmatrix}
+d & -b \\
+-c & a
+\end{bmatrix}
+$$
+
+This works because $AA^{-1} = I$ ; multiplying it out
+
+$$
+\frac{1}{ad-bc}\begin{bmatrix}
+a & b \\
+c & d
+\end{bmatrix} \begin{bmatrix}
+d & -b \\
+-c & a
+\end{bmatrix} = \frac{1}{ad - bc} \begin{bmatrix}
+ad - bc & 0 \\
+0 & ad - bc
+\end{bmatrix} = I
+$$
+
 
 ## Eigenvectors and eigenvalues
 
@@ -1225,6 +1375,3 @@ associated with each eigenvector so we can compress our
 repesentations to make them a combination of the first n
 eigenvectors; we will see the steps later.
 
-foo
-bar
-baz

@@ -1396,13 +1396,13 @@ from standard to new basis can be found by $v'{i} = B^T{i}.v$.
 We have seen it is highly desirable to use an orthonormal basis.
 How do we construct an orthonormal basis from a set of vectors?
 
-Consider
+Consider the set of vectors $v$ that are linearly independent
 
 $$
 v = \{ v_1, v_2, .., v_n \}
 $$
 
-How do we make them into an orthonormal basis set
+How do we make them into an orthonormal basis set $u$
 
 $$
 u = \{ u_1, u_2, .., u_n \}
@@ -1423,15 +1423,95 @@ u_1 = \frac{v_1}{||v_1||}
 $$
 
 Next we want to construct $u_2$ to remove any component in the
-direction of $u_1$ (or $v_1$):
+direction of $u_1$ (or $v_1$) by subtracing the vector projection
+
+
+We can consider $v_2$ as consisting of components in directions
+$u_1$ and $u_2$ (the vector we want):
 
 $$
-u_2 = v_2 - v_2.
+v_2 = (v_2.u_1)\frac{u_1}{||u_1||} + u_2
 $$
 
-XXX tbd
+Rearranging this (noting that $||u_1|| = 1$ , we get
+
+$$
+u_2 = v_2 - (v_2.u_1)u_1
+$$
+
+Then normalize
+
+$$
+u_2 = \frac{u_2}{||u_2||}
+$$
+
+Next we do the same for $v_3$ noting it is represented via
+components in directions $u_1, u_2, u_3$ :
+
+$$
+v_3 = (v_3.u1)\frac{u1}{||u1||} +  (v_3.u2)\frac{u_2}{||u_1||} + u_3
+$$
+
+So
+
+$$
+u_3 = v_3 - (v_3.u_1)u_1 - (v_3.u_2)u_2
+$$
+
+Again normalize to get final $u_3$
+
+$$
+u_3 = \frac{u_3}{||u_3||}
+$$
+
+..and so on.
 
 ## Eigenvectors and eigenvalues
+
+Eigen is German for "characteristic", and we will see how eigenvalues
+and eigenvectors usefully characterize the linear transformation performed
+by a matrix.
+
+To get an intuitive sense consider what various transformations do
+to basis vectors
+
+$$
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix} , \begin{bmatrix}
+0 \\
+1
+\end{bmatrix} and \begin{bmatrix}
+1 \\
+1
+\end{bmatrix}
+$$
+
+For example a vertical expansion where
+
+$$
+\begin{bmatrix}
+0 \\
+1
+\end{bmatrix} -> \begin{bmatrix}
+0 \\
+2
+\end{bmatrix}
+$$
+
+will have 2 eigenvalues, since x and y axes still point
+in the same directions; y vectors are simply doubled in
+length. We say that eigenvector has an eigenvalue of 2.
+
+Rotation has no eigenvectors since by definition every
+vector changes direction after transformation unless
+- it is a $360^o$ rotation; or
+- it is a %180^o$ rotation, since that points all vectors
+  $v$ in opposite direction $-1.v$
+
+If we find an eigenvector for a rotation in 2d in a 3d space
+it corresponds to the axis of rotation.
 
 Recall that a basis is a set of vectors that
 
@@ -1736,4 +1816,61 @@ Further the eigenvalues tell us the degree of growth/shrink
 associated with each eigenvector so we can compress our
 repesentations to make them a combination of the first n
 eigenvectors; we will see the steps later.
+
+# Eigenvectors and diagonalization
+
+Sometimes we need to carry out a matrix multiplication many
+times; for example updating the location of an object using
+a vector at each time step.
+
+It is expensive to do so many matrix multiplications; however
+if we re-represent the transformation using an orthonormal
+set of eigenvectors we can reduce the n multiplications
+to n-th powers of the eigenvalues multiplied by those
+eigenvectors.  For eigenbasis $e_1, ..., e_n$ we
+construct matrix C consisting of these eigenbases as columns:
+
+$$
+C = \begin{bmatrix}
+e_1 & e_2 & ... & e_n
+\end{bmatrix}
+$$
+
+$$
+D = \begin{bmatrix}
+\lambda_1 & 0 & ... & 0 \\
+0 & \lambda_2 & ... & 0 \\
+... & ... & ... & ... \\
+0 & 0 & ... & \lambda_n
+\end{bmatrix}
+$$
+
+Because applying our transformation $T$ is equivalent to
+converting to our eigenbasis, multiplying by the diagonal
+eigenvector basis and converting back from the eigenbasis.
+
+$$
+T = CDC^{-1}
+$$
+
+So because of this, we see that
+
+$$
+T^2 = CDC^{-1}CDC^{-1}
+$$
+
+Which becomes
+
+$$
+T^2 = CD^2C^{-1}
+$$
+
+$D^2$ is simply the square of the main diagonal eigenvalues,
+so we can see how higher power multiplication simplifies.
+
+Generalizing,
+
+$$
+T^n = CD^nC^{-1}
+$$
 

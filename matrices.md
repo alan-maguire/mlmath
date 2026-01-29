@@ -1119,7 +1119,8 @@ array([ 5., -1.,  6.])
   when we take the transpose of $A$, its orthonormal columns become rows;
   then when we multiply each row with the columns, only the matching column
   will be non-zero, so we end up with the identity matrix.  From this
-  we can see that $A^T = A^-1$ , since $A^TA = AA^T = I$.
+  we can see that $A^T = A^-1$ , since $A^TA = AA^T = I$.  This is valuable
+  because getting the inverse is as simple as getting the transpose.
 
 ## Determinant
 
@@ -1260,6 +1261,175 @@ ad - bc & 0 \\
 \end{bmatrix} = I
 $$
 
+## Matrices changing basis
+
+We saw a matrix represents a linear transformation. It can also
+be used to translate between different coordinate systems using
+different basis vectors.
+
+For example, if I have a basis
+
+$$
+\begin{bmatrix}
+4 \\
+1
+\end{bmatrix} , \begin{bmatrix}
+2 \\
+1
+\end{bmatrix}
+$$
+
+I can use the matrix constructed from this basis $B$ :
+
+$$
+\begin{bmatrix}
+4 & 2 \\
+1 & 1
+\end{bmatrix}
+$$
+
+to translate vectors expressed in terms of that other basis
+in terms of the standard basis; for example to translate
+
+$$
+\begin{bmatrix}
+2 \\
+3
+\end{bmatrix}
+$$
+
+in the above basis into standard basis vector in terms of
+$e_1, e_2$ I can just do a matrix multiplication of the
+non-standard basis matrix $B$ and the non-standard vector:
+
+$$
+\begin{bmatrix}
+4 & 2 \\
+1 & 1
+\end{bmatrix} \begin{bmatrix}
+2 \\
+3
+\end{bmatrix} = \begin{bmatrix}
+14 \\
+5
+\end{bmatrix}
+$$
+
+However more often I will want to translate from a standard
+basis representation to a new basis; in such a case I will
+need the inverse of the basis to map from standard basis
+to new basis.  The inverse of $B$ above is $B^{-1}$:
+
+$$
+\frac{1}{2} \begin{bmatrix}
+1 & -1 \\
+-1 & 4
+\end{bmatrix}
+$$
+
+(using our 2x2 inverse formula). Indeed we see that
+
+$$
+\frac{1}{2} \begin{bmatrix}
+1 & -1 \\
+-1 & 4
+\end{bmatrix} \begin{bmatrix}
+14 \\
+5
+\end{bmatrix} = \begin{bmatrix}
+2 \\
+3
+\end{bmatrix}
+$$
+
+...which was our original vector in the space represented by
+basis from $B$.
+
+One trick we can do is this; say we have a transformation
+in the standard basis represented by matrix $T$, and we want to
+do the same transformation in new basis represented by B.
+Rather than figuring out that transformation in the new basis,
+we can
+
+- take a vector expressed in terms of the new basis,
+  multiply it by B to convert it to standard basis representation
+- apply T to it 
+- covert the result back to the new basis via $B^{-1}
+
+i.e. for vector $v$ in the new basis $B$, the result of applying
+transformation equivalent to $T$ in $B$, $v'$ is
+
+$$
+v' = B^{-1}TBv
+$$
+
+...all without knowing the equivalent transformation in $B$.
+
+In general we are dealing with orthonormal bases, unlike those
+used in this example.  If the vectors of the new basis are
+orthonormal, we can compute the new basis coordinates simply
+using the dot product between the new basis vector and the 
+original coordinate expressed in $e_1, ..., e_n$ since we are
+essentially doing a scalar projection on to the new basis.
+So no need to compute inverse etc if new bases are orthonormal.
+
+Recall that the projection formula for projecting a onto b is
+
+$$
+\frac{a.b}{||b||}
+$$
+
+But since the basis vectors in the new space are orthonormal
+we know $||b|| = 1$, hence we can just use the dot product
+to translate from standard to new orthonormal bases.
+
+We saw above that if $B$ consists of orthonormal columns, then
+$B^TB = I$ and therefore $B^T = B^{-1}$.  Viewing B as an
+orthonormal basis, we see why it is useful to make the new
+basis orthonormal; translating back and forth requires the inverse
+but the inverse of $B$ is simple to compute - $B^T$.  And this
+is another way of showing why the components of the transformation
+from standard to new basis can be found by $v'{i} = B^T{i}.v$.
+
+## Gram-Schmidt process to construct an orthonormal basis
+
+We have seen it is highly desirable to use an orthonormal basis.
+How do we construct an orthonormal basis from a set of vectors?
+
+Consider
+
+$$
+v = \{ v_1, v_2, .., v_n \}
+$$
+
+How do we make them into an orthonormal basis set
+
+$$
+u = \{ u_1, u_2, .., u_n \}
+$$
+
+First we need to get the directions right; the intuition is we
+need to take each vector and subtract the components of that vector
+in the other vector directions, essentially subtracting the projection
+of the vector onto the other vector bases.
+
+Once we have done that and got directions right, we normalize the
+results.
+
+So starting with $v_1$, we compute $u_1$ via
+
+$$
+u_1 = \frac{v_1}{||v_1||}
+$$
+
+Next we want to construct $u_2$ to remove any component in the
+direction of $u_1$ (or $v_1$):
+
+$$
+u_2 = v_2 - v_2.
+$$
+
+XXX tbd
 
 ## Eigenvectors and eigenvalues
 

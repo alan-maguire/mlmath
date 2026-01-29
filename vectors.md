@@ -223,25 +223,25 @@ by $||y||$ and we have the dot product formula.
 Scalar projection of x onto y (from Pythagorus theorem):
 
 $$
-s(x,y) = ||y||cos(\theta)
+s(x,y) = ||x||cos(\theta)
 $$
 
 From the dot product formula above, we know
 
 $$
-x.y = ||x||.||y||cos(\theta)
+x.y = ||x|| ||y||cos(\theta)
 $$
 
 So
 
 $$
-||y||cos(\theta) = \frac{x.y}{||x||}
+||x||cos(\theta) = \frac{x.y}{||y||}
 $$
 
 Therefore
 
 $$
-s(x,y) = \frac{x.y}{||x||} 
+s(x,y) = \frac{x.y}{||y||} 
 $$
 
 This makes it much easier to compute projections;

@@ -1849,6 +1849,13 @@ Because applying our transformation $T$ is equivalent to
 converting to our eigenbasis, multiplying by the diagonal
 eigenvector basis and converting back from the eigenbasis.
 
+This equivlance works because $C^{-1}$ is the matrix that
+will take a vector and give us its coordiantes in the eigenbasis.
+Then in the eigenbasis we apply D to that vector which just
+stretches and shrinks by the eigenvalues.  Finally we multiply
+by $C$ to convert the resulting vector back into the original
+basis.
+
 $$
 T = CDC^{-1}
 $$

@@ -42,11 +42,11 @@ $$
 $$
 
   Simplifying we end up with
-$$
 
+$$
 \frac{ m\Delta x }{\Delta x } = m
-
 $$
+
   If we then take the
 
 $$

@@ -400,3 +400,21 @@ L = -\frac{1}{N} \Sigma^{N}_{i=1} [y_i . ln(p_i) + (1 - y_i)ln(1 - p_i)]
 $$
 
 where p is the probability (the prediction) and y is the actual output.
+
+## How it works
+
+The model will penalize confident but wrong estimates;
+so if p is close to 1 but y is 0, the $(1-y)$ term is left
+and because $ln(1-p)$ is close to 0 we get a large negative
+value (e.g. $log(0.00001) = -5$); this is negated by the minus
+sign for the loss and becomes a large positive loss value.
+
+Similarly if p is close to 0 but y is 1, we get a large negative
+value that is itself negated to give a large positive loss. 
+
+And if the model is right; where p is close to 1 for $y = 1$ we
+get for example $-(1.(ln(0.99999)) = -(-0.000004343)$, a negligable
+loss.
+
+A nice feature of the log loss is that it is easily differentiable
+and smooth, making it a good candidate for gradient descent.

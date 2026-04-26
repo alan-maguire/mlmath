@@ -265,6 +265,7 @@ $$
  - Chain rule
 
    For a composition $f(x) = g(h(x))
+
 $$
 \frac{df}{dx} = \frac{dg}{dh} . \frac{dh}{dx}
 $$
@@ -346,7 +347,6 @@ $$
 Because when differentiating L(x) and setting it to 0 we get
 
 $$
-
 L'(x) = 2(x-a_1) + 2(x-a_2) + 2(x-a_n) = 2nx - 2(a_1 + a_2 + ... + a_n) = 0
 $$
 
@@ -385,3 +385,18 @@ the negative of a log betwee 0-1 gives us a positive value.
 
 We then minimize that positive number to minimize loss.
 
+A common log-loss formula used, especially in classification problems
+where we want a value between 0 (no) and 1 (yes) is
+
+
+$$
+L = -(y.ln(p) + (1 -y)(ln(1-p))
+$$
+
+It is often weighted across a whole dataset of $y_i$ , $p_i$
+
+$$
+L = -\frac{1}{N} \sigma^{N}_{i=1} [y_i . ln(p_i) + (1 - y_i)ln(1 - p_i)]
+$$
+
+where p is the probability (the prediction) and y is the actual output.

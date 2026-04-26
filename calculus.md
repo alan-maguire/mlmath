@@ -396,7 +396,7 @@ $$
 It is often weighted across a whole dataset of $y_i$ , $p_i$
 
 $$
-L = -\frac{1}{N} \sigma^{N}_{i=1} [y_i . ln(p_i) + (1 - y_i)ln(1 - p_i)]
+L = -\frac{1}{N} \Sigma^{N}_{i=1} [y_i . ln(p_i) + (1 - y_i)ln(1 - p_i)]
 $$
 
 where p is the probability (the prediction) and y is the actual output.

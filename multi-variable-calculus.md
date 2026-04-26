@@ -176,7 +176,7 @@ $$
 Using the chain rule:
 
 $$
-\frac{d}{dz} \sigma (z) = (-1)(1+e^{-z})^-2 . - e^{-z}
+\frac{d}{dz} \sigma (z) = (-1)(1+e^{-z})^{-2} . - e^{-z}
 $$
 
 Simplifying we get

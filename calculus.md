@@ -134,6 +134,7 @@ $$
    is the reciprocal of the slope of $f(x)$ at every point, and as
    a result, if we know $f'(x)$, the derivative of $f(x)$, we can
    get the derivative of the inverse $g(x)$ via
+
 $$
 g'(x) = \frac{1}{f'(x)}
 $$
@@ -143,6 +144,7 @@ $$
  - Derivative of trigonometric functions.
 
    For $f(x) = sin(x)$ the derivative is
+
 $$
 f'(x) = cos(x)
 $$

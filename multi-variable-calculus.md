@@ -401,8 +401,8 @@ It looks like this:
 $$
 \begin{bmatrix}
 \frac{\delta ^2 f}{\delta x^2}
-&    \frac{\delta f}{\delta x}\frac{\delta f}{\delta y} \\
-\frac{\delta f}{\delta y}\frac{\delta f}{\delta x}
+&    \frac{\delta f}{\delta x} \frac{\delta f}{\delta y} \\
+\frac{\delta f}{\delta y} \frac{\delta f}{\delta x}
 &    \frac{\delta ^2 f}{\delta y^2} \\
 \end{bmatrix}
 $$
@@ -422,8 +422,10 @@ $$
 $$
 
 $$
-\frac{\delta ^2f}{\delta x^2} =  \frac{\delta ^2f}{\delta y^2} =  2 ;
+\frac{\delta ^2f}{\delta x^2} =  \frac{\delta ^2f}{\delta y^2} =  2
+$$
 
+$$
 \frac{\delta f}{\delta x} \frac{\delta f}{\delta y} = \frac{\delta f}{\delta y} \frac{\delta f}{\delta x} = 0
 $$
 

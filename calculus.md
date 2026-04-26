@@ -52,6 +52,7 @@ $$
 $$
 lim_{\Delta x -> 0}\frac{\Delta y }{\Delta x } = m
 $$
+
   ...this becomes m since we have eliminated $\Delta x$ , and hence
 the division by zero.  Many proofs take this form.
 

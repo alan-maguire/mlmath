@@ -262,6 +262,26 @@ $$
 f'(x) = g'(x)h(x) + g(x)h'(x)
 $$
 
+   To prove use the limit definition
+
+$$
+f'(x) = lim_{\Delta ->0}\frac{g(x+\Delta)h(x+\Delta) - g(x)h(x)}{h}
+$$
+
+Simplify by adding and sutracting $$g(x+\Delta)h(x)$$
+
+$$
+f'(x) = lim_{\Delta ->0}\frac{g(x+\Delta)h(x+\Delta) -g(x+\Delta)h(x) + g(x+\Delta)h(x) - g(x)h(x)}{h}
+$$
+
+which becomes
+
+$$
+f'(x) = lim_{\Delta ->0}(g(x+\Delta)\frac{h(x+\Delta)-h(x)}{h} + h(x)\frac{g(x+\Delta)-g(x)}{h})
+$$
+
+which is equivalent to $g(x)h'(x) + h(x)g'(x)$.
+
  - Chain rule
 
    For a composition $f(x) = g(h(x))

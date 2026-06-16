@@ -14,7 +14,7 @@ $$
 \frac{\delta f}{\delta y}(x^2 + y^2) = 2y
 $$
 
-We group these together into a gradient
+We group these together into a gradient, also called the Jacobian:
 
 $$
 \nabla f = \begin{bmatrix} 
@@ -460,4 +460,6 @@ $$
 i.e. the eigenvalues - are all positive, this is a minimum. Similarly if 
 all roots are negative it is a maximum.
 
+If the determinant of the Hessian is positive we know that it is either
+a maximum or minimum.
 

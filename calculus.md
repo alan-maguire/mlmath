@@ -265,32 +265,73 @@ $$
    To prove use the limit definition
 
 $$
-f'(x) = lim_{\Delta ->0}\frac{g(x+\Delta)h(x+\Delta) - g(x)h(x)}{h}
+f'(x) = lim_{\Delta x->0}\frac{g(x+\Delta x)h(x+\Delta x) - g(x)h(x)}{\Delta x}
 $$
 
-Simplify by adding and sutracting $$g(x+\Delta)h(x)$$
+Simplify by adding and sutracting $g(x+\Delta)h(x)$
 
 $$
-f'(x) = lim_{\Delta ->0}\frac{g(x+\Delta)h(x+\Delta) -g(x+\Delta)h(x) + g(x+\Delta)h(x) - g(x)h(x)}{h}
+f'(x) = lim_{\Delta x ->0}\frac{g(x+\Delta x)h(x+\Delta x) -g(x+\Delta x)h(x) + g(x+\Delta x)h(x) - g(x)h(x)}{\Delta x}
 $$
 
 which becomes
 
 $$
-f'(x) = lim_{\Delta ->0}(g(x+\Delta)\frac{h(x+\Delta)-h(x)}{h} + h(x)\frac{g(x+\Delta)-g(x)}{h})
+f'(x) = lim_{\Delta x->0}(g(x+\Delta x)\frac{h(x+\Delta x)-h(x)}{\Delta x} + h(x)\frac{g(x+\Delta x)-g(x)}{\Delta x})
 $$
 
 which is equivalent to $g(x)h'(x) + h(x)g'(x)$.
 
  - Chain rule
 
-   For a composition $f(x) = g(h(x))
+   For a composition $f(x) = g(h(x))$
 
 $$
 \frac{df}{dx} = \frac{dg}{dh} . \frac{dh}{dx}
 $$
 
    We see that Leibnitz notation is quite suggestive of the chain rule.
+
+   To prove start with $h(x) = u$ , i.e. $f(x) = g(u)$
+
+   So
+
+$$
+\frac{df}{dx} = lim_{\Delta x->0} \frac{\Delta f}{\Delta x}
+$$
+
+   Multiply by $\frac{\Delta u}{\Delta u} (1)$
+
+$$
+\frac{df}{dx} = lim_{\Delta x->0} \frac{\Delta f}{\Delta x} \frac{\Delta u}{\Delta u}
+$$
+
+   Rearrange
+
+$$
+\frac{df}{dx} = lim_{\Delta x->0} \frac{\Delta f}{\Delta u} \frac{\Delta u}{\Delta x}
+$$
+
+   Now because $h(x)$ or $u$ is differentiable, it is continuous; therefore as
+   $\Delta x->0$ then $\Delta u->0$ also.
+ 
+   So
+
+$$
+\frac{df}{dx} = lim_{\Delta x->0} \frac{\Delta f}{\Delta u} lim_{\Delta x->0} \frac{\Delta u}{\Delta x}
+$$ 
+  
+   is equivalent to
+
+$$
+\frac{df}{dx} = lim_{\Delta u->0} \frac{\Delta f}{\Delta u} lim_{\Delta x->0} \frac{\Delta u}{\Delta x}
+$$ 
+
+or
+
+$$
+\frac{df}{dx} = \frac{df}{du} \frac{du}{dx}
+$$
 
 ## Using SymPy to symbolically differentiate
 
@@ -372,7 +413,7 @@ $$
 
 (since differentiating $(x-a)^2$ with the chain rule gives $2(x-a)$ ).
 
-Therefore to minimize $L(x)$ (where $L'(x) = 0),
+Therefore to minimize $L(x)$ (where $L'(x) = 0$),
 
 $$
 x = \frac{a_1+a_2+...+a_n}{n}
